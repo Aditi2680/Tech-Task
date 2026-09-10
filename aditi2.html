@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>FEST 2026</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #fff8f0;
+        color: #222;
+    }
+
+    /* NAVBAR */
+
+    header {
+        background: #171717;
+        color: white;
+        padding: 18px 8%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    header h2 {
+        margin: 0;
+        color: #ff7043;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 25px;
+        transition: 0.2s;
+    }
+
+    nav a:hover {
+        color: #ff7043;
+    }
+
+    /* HERO */
+
+    .hero {
+        padding: 80px 8%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 50px;
+    }
+
+    .hero-text {
+        max-width: 600px;
+    }
+
+    .hero h1 {
+        font-size: 65px;
+        margin: 10px 0;
+    }
+
+    .hero h1 span {
+        color: #ff7043;
+    }
+
+    .hero p {
+        color: #666;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .button {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 13px 25px;
+
+        background: #ff7043;
+        color: white;
+
+        text-decoration: none;
+        border: none;
+        border-radius: 6px;
+
+        cursor: pointer;
+        font-size: 16px;
+
+        transition: 0.2s;
+    }
+
+    .button:hover {
+        background: #e85d32;
+        transform: translateY(-2px);
+    }
+
+    /* TICKET */
+
+    .ticket {
+        width: 330px;
+        min-height: 400px;
+
+        padding: 30px;
+
+        color: white;
+        background: #222;
+
+        border-radius: 20px;
+        box-shadow: 10px 10px 0 #ff7043;
+
+        transition: 0.3s;
+    }
+
+    .ticket:hover {
+        transform: translateY(-5px);
+    }
+
+    .ticket h2 {
+        color: #ff7043;
+        font-size: 30px;
+    }
+
+    .ticket .big {
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .ticket-line {
+        border-top: 2px dashed #777;
+        margin: 30px 0;
+    }
+
+    /* MAIN */
+
+    main {
+        width: 85%;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .section {
+        background: white;
+        padding: 30px;
+        margin: 30px 0;
+
+        border-radius: 12px;
+
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+        color: #ff7043;
+        margin-top: 0;
+    }
+
+    /* FORM */
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+        width: 100%;
+        padding: 12px;
+
+        border: 1px solid #ccc;
+        border-radius: 6px;
+
+        font-size: 15px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #ff7043;
+    }
+
+    /* IMAGE PREVIEW */
+
+    #imagePreview {
+        display: none;
+
+        width: 100px;
+        height: 100px;
+
+        object-fit: cover;
+
+        margin-top: 12px;
+
+        border-radius: 10px;
+        border: 3px solid #ff7043;
+    }
+
+    /* OPTIONS */
+
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .box {
+        width: 200px;
+        padding: 20px;
+
+        border: 2px solid #eee;
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+    }
+
+    .box:hover {
+        border-color: #ff7043;
+        transform: translateY(-3px);
+    }
+
+    .box.selected {
+        border-color: #ff7043;
+        background: #fff3e8;
+    }
+
+    .box input {
+        width: auto;
+        cursor: pointer;
+    }
+
+    .box h3 {
+        margin-bottom: 5px;
+    }
+
+    .box p {
+        color: #777;
+    }
+
+    .price {
+        color: #ff7043;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /* QUANTITY */
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        margin-top: 12px;
+    }
+
+    .quantity button {
+        width: 30px;
+        height: 30px;
+
+        border: none;
+        border-radius: 5px;
+
+        background: #ff7043;
+        color: white;
+
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .quantity span {
+        min-width: 20px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* REVIEW */
+
+    .review {
+        background: #fff3e8;
+    }
+
+    .review-row {
+        margin: 10px 0;
+    }
+
+    .review-row b {
+        display: inline-block;
+        min-width: 100px;
+    }
+
+    .price-breakdown {
+        margin-top: 20px;
+        padding-top: 15px;
+
+        border-top: 1px solid #ddd;
+    }
+
+    .total {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ff7043;
+    }
+
+    .error {
+        display: none;
+
+        margin-top: 15px;
+        padding: 12px;
+
+        background: #ffe1dc;
+        color: #b42318;
+
+        border-radius: 6px;
+    }
+
+    .success {
+        display: none;
+
+        margin-top: 15px;
+        padding: 12px;
+
+        background: #e3f7e8;
+        color: #176b2c;
+
+        border-radius: 6px;
+    }
+
+    /* MY PASS */
+
+    .my-pass {
+        background: #171717;
+        color: white;
+        padding: 35px;
+
+        border-radius: 15px;
+
+        border-left: 8px solid #ff7043;
+    }
+
+    .my-pass h2 {
+        color: #ff7043;
+    }
+
+    .my-pass p {
+        color: #ddd;
+    }
+
+    .generated-photo {
+        width: 100px;
+        height: 100px;
+
+        object-fit: cover;
+
+        border-radius: 10px;
+        border: 3px solid #ff7043;
+
+        margin-bottom: 15px;
+    }
+
+    /* FOOTER */
+
+    footer {
+        margin-top: 60px;
+        padding: 25px;
+
+        background: #171717;
+        color: white;
+
+        text-align: center;
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 700px) {
+
+        header {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav a {
+            margin: 0 7px;
+            font-size: 14px;
+        }
+
+        .hero {
+            flex-direction: column;
+            text-align: center;
+            padding: 50px 5%;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+        }
+
+        .ticket {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        main {
+            width: 92%;
+        }
+
+        .options {
+            flex-direction: column;
+        }
+
+        .box {
+            width: 100%;
+        }
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- NAVIGATION -->
+
+<header>
+
+    <h2>FEST 2026</h2>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#generate">Generate Ticket</a>
+        <a href="#passes">My Pass</a>
+    </nav>
+
+</header>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <p>STUDENT FESTIVAL 2026</p>
+
+        <h1>
+            Your pass.<br>
+            <span>Your festival.</span>
+        </h1>
+
+        <p>
+            Create your Fest 2026 ticket by choosing
+            your favorite artists, food, games and
+            festival pass.
+        </p>
+
+        <a href="#generate" class="button">
+            Create My Ticket
+        </a>
+
+    </div>
+
+
+    <div class="ticket">
+
+        <p>FEST 2026</p>
+
+        <h2>STUDENT PASS</h2>
+
+        <p>WELCOME TO THE FEST!</p>
+
+        <div class="ticket-line"></div>
+
+        <p>DATE</p>
+
+        <div class="big">10 SEP</div>
+
+        <p>2026</p>
+
+        <div class="ticket-line"></div>
+
+        <p id="heroTicketId">Ticket ID: FEST-2026-001</p>
+
+    </div>
+
+</section>
+
+
+<main>
+
+
+    <!-- USER DETAILS -->
+
+    <section class="section" id="generate">
+
+        <h2>1. Your Details</h2>
+
+        <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Roll Number</label>
+
+            <input
+                type="text"
+                id="rollNumber"
+                placeholder="Enter your roll number"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Image URL</label>
+
+            <input
+                type="url"
+                id="imageUrl"
+                placeholder="Enter image URL"
+            >
+
+            <img id="imagePreview" alt="Image Preview">
+
+        </div>
+
+    </section>
+
+
+    <!-- ARTISTS -->
+
+    <section class="section">
+
+        <h2>2. Choose Artists</h2>
+
+        <div class="options">
+
+            <label class="box">
+
+                <input
+                    type="checkbox"
+                    class="artist"
+                    value="Neon Waves"
+                    data-price="400"
+                >
+
+                <h3>Neon Waves</h3>
+
+                <p>Live Music</p>
+
+                <span class="price">₹400</span>
+
+            </label>
+
+
+            <label class="box">
+
+                <input
+                    type="checkbox"
+                    class="artist"
+                    value="The Echoes"
+                    data-price="350"
+                >
+
+                <h3>The Echoes</h3>
+
+                <p>Indie Music</p>
+
+                <span class="price">₹350</span>
+
+            </label>
+
+
+            <label class="box">
+
+                <input
+                    type="checkbox"
+                    class="artist"
+                    value="Rhythm Route"
+                    data-price="300"
+                >
+
+                <h3>Rhythm Route</h3>
+
+                <p>Fusion</p>
+
+                <span class="price">₹300</span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOD -->
+
+    <section class="section">
+
+        <h2>3. Choose Food</h2>
+
+        <div class="options">
+
+            <div class="box food-box">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="food"
+                        value="Pizza"
+                        data-price="150"
+                    >
+
+                    <h3>Pizza</h3>
+
+                    <p>Cheese Pizza</p>
+
+                    <span class="price">₹150</span>
+                </label>
+
+                <div class="quantity">
+
+                    <button type="button" onclick="changeQuantity('pizza', -1)">
+                        −
+                    </button>
+
+                    <span id="pizzaQuantity">0</span>
+
+                    <button type="button" onclick="changeQuantity('pizza', 1)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="box food-box">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="food"
+                        value="Burger"
+                        data-price="120"
+                    >
+
+                    <h3>Burger</h3>
+
+                    <p>Veg Burger</p>
+
+                    <span class="price">₹120</span>
+
+                </label>
+
+                <div class="quantity">
+
+                    <button type="button" onclick="changeQuantity('burger', -1)">
+                        −
+                    </button>
+
+                    <span id="burgerQuantity">0</span>
+
+                    <button type="button" onclick="changeQuantity('burger', 1)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="box food-box">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="food"
+                        value="Cold Drink"
+                        data-price="80"
+                    >
+
+                    <h3>Cold Drink</h3>
+
+                    <p>Chilled drink</p>
+
+                    <span class="price">₹80</span>
+
+                </label>
+
+                <div class="quantity">
+
+                    <button type="button" onclick="changeQuantity('drink', -1)">
+                        −
+                    </button>
+
+                    <span id="drinkQuantity">0</span>
+
+                    <button type="button" onclick="changeQuantity('drink', 1)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GAMES -->
+
+    <section class="section">
+
+        <h2>4. Games & Activities</h2>
+
+        <div class="options">
+
+            <label class="box">
+
+                <input
+                    type="checkbox"
+                    class="game"
+                    value="Arcade"
+                    data-price="100"
+                >
+
+                <h3>Arcade</h3>
+
+                <p>Fun arcade games</p>
+
+                <span class="price">₹100</span>
+
+            </label>
+
+
+            <label class="box">
+
+                <input
+                    type="checkbox"
+                    class="game"
+                    value="Mini Golf"
+                    data-price="150"
+                >
+
+                <h3>Mini Golf</h3>
+
+                <p>18-hole game</p>
+
+                <span class="price">₹150</span>
+
+            </label>
+
+
+            <label class="box">
+
+                <input
+                    type="checkbox"
+                    class="game"
+                    value="VR Zone"
+                    data-price="200"
+                >
+
+                <h3>VR Zone</h3>
+
+                <p>Virtual reality</p>
+
+                <span class="price">₹200</span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- PASSES -->
+
+    <section class="section">
+
+        <h2>5. Select Your Pass</h2>
+
+        <div class="options">
+
+            <label class="box">
+
+                <input
+                    type="radio"
+                    name="pass"
+                    value="Bronze"
+                    data-price="499"
+                >
+
+                <h3>Bronze</h3>
+
+                <p>Basic entry</p>
+
+                <span class="price">₹499</span>
+
+            </label>
+
+
+            <label class="box">
+
+                <input
+                    type="radio"
+                    name="pass"
+                    value="Silver"
+                    data-price="899"
+                >
+
+                <h3>Silver</h3>
+
+                <p>Entry + Food</p>
+
+                <span class="price">₹899</span>
+
+            </label>
+
+
+            <label class="box">
+
+                <input
+                    type="radio"
+                    name="pass"
+                    value="Gold"
+                    data-price="1499"
+                >
+
+                <h3>Gold</h3>
+
+                <p>All access + VIP</p>
+
+                <span class="price">₹1499</span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEW -->
+
+    <section class="section review">
+
+        <h2>6. Review Ticket</h2>
+
+        <div class="review-row">
+            <b>Name:</b>
+            <span id="reviewName">Not entered</span>
+        </div>
+
+        <div class="review-row">
+            <b>Roll Number:</b>
+            <span id="reviewRoll">Not entered</span>
+        </div>
+
+        <div class="review-row">
+            <b>Artists:</b>
+            <span id="reviewArtists">None selected</span>
+        </div>
+
+        <div class="review-row">
+            <b>Food:</b>
+            <span id="reviewFood">None selected</span>
+        </div>
+
+        <div class="review-row">
+            <b>Activity:</b>
+            <span id="reviewGames">None selected</span>
+        </div>
+
+        <div class="review-row">
+            <b>Pass:</b>
+            <span id="reviewPass">Not selected</span>
+        </div>
+
+
+        <div class="price-breakdown">
+
+            <p>
+                Pass:
+                <span id="passPrice">₹0</span>
+            </p>
+
+            <p>
+                Artists:
+                <span id="artistPrice">₹0</span>
+            </p>
+
+            <p>
+                Food:
+                <span id="foodPrice">₹0</span>
+            </p>
+
+            <p>
+                Activities:
+                <span id="gamePrice">₹0</span>
+            </p>
+
+        </div>
+
+
+        <p class="total">
+            Total: <span id="totalPrice">₹0</span>
+        </p>
+
+
+        <div id="errorMessage" class="error">
+            Please enter your name, roll number and select a pass before generating your ticket.
+        </div>
+
+        <div id="successMessage" class="success">
+            Your Fest 2026 ticket has been generated successfully!
+        </div>
+
+
+        <button
+            type="button"
+            class="button"
+            onclick="generateTicket()"
+        >
+            Generate Ticket
+        </button>
+
+    </section>
+
+
+    <!-- MY PASS -->
+
+    <section class="my-pass" id="passes">
+
+        <h2>MY FEST 2026 PASS</h2>
+
+        <div id="passContent">
+
+            <h1>STUDENT PASS</h1>
+
+            <p>
+                Create your ticket above to see your personalized pass here.
+            </p>
+
+            <p>
+                Music • Food • Games • Fun
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 Fest 2026 | Student Festival
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       FOOD QUANTITIES
+    ========================= */
+
+    const quantities = {
+        pizza: 0,
+        burger: 0,
+        drink: 0
+    };
+
+
+    function changeQuantity(item, amount) {
+
+        quantities[item] += amount;
+
+        if (quantities[item] < 0) {
+            quantities[item] = 0;
+        }
+
+        document.getElementById(item + "Quantity").textContent =
+            quantities[item];
+
+        const foodInputs = document.querySelectorAll(".food");
+
+        foodInputs.forEach(input => {
+
+            if (
+                (item === "pizza" && input.value === "Pizza") ||
+                (item === "burger" && input.value === "Burger") ||
+                (item === "drink" && input.value === "Cold Drink")
+            ) {
+
+                input.checked = quantities[item] > 0;
+
+            }
+
+        });
+
+        updateReview();
+    }
+
+
+    /* =========================
+       IMAGE PREVIEW
+    ========================= */
+
+    document.getElementById("imageUrl").addEventListener(
+        "input",
+        function () {
+
+            const url = this.value.trim();
+            const preview = document.getElementById("imagePreview");
+
+            if (!url) {
+                preview.style.display = "none";
+                return;
+            }
+
+            preview.src = url;
+            preview.style.display = "block";
+
+            preview.onerror = function () {
+                preview.style.display = "none";
+            };
+
+        }
+    );
+
+
+    /* =========================
+       BOX SELECTION VISUALS
+    ========================= */
+
+    document.querySelectorAll("input").forEach(input => {
+
+        input.addEventListener("change", function () {
+
+            updateSelectedBoxes();
+            updateReview();
+
+        });
+
+    });
+
+
+    function updateSelectedBoxes() {
+
+        document.querySelectorAll(".box").forEach(box => {
+
+            const input = box.querySelector("input");
+
+            if (input && input.checked) {
+                box.classList.add("selected");
+            } else {
+                box.classList.remove("selected");
+            }
+
+        });
+
+    }
+
+
+    /* =========================
+       REVIEW + PRICE
+    ========================= */
+
+    function updateReview() {
+
+        const name =
+            document.getElementById("fullName").value.trim();
+
+        const roll =
+            document.getElementById("rollNumber").value.trim();
+
+
+        document.getElementById("reviewName").textContent =
+            name || "Not entered";
+
+        document.getElementById("reviewRoll").textContent =
+            roll || "Not entered";
+
+
+        /* ARTISTS */
+
+        const selectedArtists =
+            [...document.querySelectorAll(".artist:checked")];
+
+        const artistNames =
+            selectedArtists.map(item => item.value);
+
+        const artistTotal =
+            selectedArtists.reduce(
+                (sum, item) =>
+                    sum + Number(item.dataset.price),
+                0
+            );
+
+
+        document.getElementById("reviewArtists").textContent =
+            artistNames.length
+                ? artistNames.join(", ")
+                : "None selected";
+
+
+        /* FOOD */
+
+        const foodList = [];
+
+        let foodTotal = 0;
+
+
+        if (quantities.pizza > 0) {
+
+            foodList.push(
+                `Pizza × ${quantities.pizza}`
+            );
+
+            foodTotal += 150 * quantities.pizza;
+
+        }
+
+
+        if (quantities.burger > 0) {
+
+            foodList.push(
+                `Burger × ${quantities.burger}`
+            );
+
+            foodTotal += 120 * quantities.burger;
+
+        }
+
+
+        if (quantities.drink > 0) {
+
+            foodList.push(
+                `Cold Drink × ${quantities.drink}`
+            );
+
+            foodTotal += 80 * quantities.drink;
+
+        }
+
+
+        document.getElementById("reviewFood").textContent =
+            foodList.length
+                ? foodList.join(", ")
+                : "None selected";
+
+
+        /* GAMES */
+
+        const selectedGames =
+            [...document.querySelectorAll(".game:checked")];
+
+        const gameNames =
+            selectedGames.map(item => item.value);
+
+        const gameTotal =
+            selectedGames.reduce(
+                (sum, item) =>
+                    sum + Number(item.dataset.price),
+                0
+            );
+
+
+        document.getElementById("reviewGames").textContent =
+            gameNames.length
+                ? gameNames.join(", ")
+                : "None selected";
+
+
+        /* PASS */
+
+        const selectedPass =
+            document.querySelector(".pass:checked");
+
+        const pass =
+            document.querySelector(
+                'input[name="pass"]:checked'
+            );
+
+
+        let passName = "Not selected";
+        let passTotal = 0;
+
+
+        if (pass) {
+
+            passName = pass.value;
+            passTotal = Number(pass.dataset.price);
+
+        }
+
+
+        document.getElementById("reviewPass").textContent =
+            passName;
+
+
+        /* TOTAL */
+
+        const total =
+            passTotal +
+            artistTotal +
+            foodTotal +
+            gameTotal;
+
+
+        document.getElementById("passPrice").textContent =
+            `₹${passTotal}`;
+
+        document.getElementById("artistPrice").textContent =
+            `₹${artistTotal}`;
+
+        document.getElementById("foodPrice").textContent =
+            `₹${foodTotal}`;
+
+        document.getElementById("gamePrice").textContent =
+            `₹${gameTotal}`;
+
+        document.getElementById("totalPrice").textContent =
+            `₹${total}`;
+
+    }
+
+
+    /* =========================
+       GENERATE TICKET
+    ========================= */
+
+    function generateTicket() {
+
+        const name =
+            document.getElementById("fullName").value.trim();
+
+        const roll =
+            document.getElementById("rollNumber").value.trim();
+
+        const image =
+            document.getElementById("imageUrl").value.trim();
+
+        const pass =
+            document.querySelector(
+                'input[name="pass"]:checked'
+            );
+
+
+        const error =
+            document.getElementById("errorMessage");
+
+        const success =
+            document.getElementById("successMessage");
+
+
+        error.style.display = "none";
+        success.style.display = "none";
+
+
+        if (!name || !roll || !pass) {
+
+            error.style.display = "block";
+
+            document
+                .getElementById("generate")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            return;
+
+        }
+
+
+        /* ARTISTS */
+
+        const artists =
+            [...document.querySelectorAll(".artist:checked")]
+            .map(item => item.value);
+
+
+        /* FOOD */
+
+        const food = [];
+
+        if (quantities.pizza > 0) {
+            food.push(`Pizza × ${quantities.pizza}`);
+        }
+
+        if (quantities.burger > 0) {
+            food.push(`Burger × ${quantities.burger}`);
+        }
+
+        if (quantities.drink > 0) {
+            food.push(`Cold Drink × ${quantities.drink}`);
+        }
+
+
+        /* GAMES */
+
+        const games =
+            [...document.querySelectorAll(".game:checked")]
+            .map(item => item.value);
+
+
+        /* PRICE */
+
+        const passPrice =
+            Number(pass.dataset.price);
+
+
+        const artistPrice =
+            [...document.querySelectorAll(".artist:checked")]
+            .reduce(
+                (sum, item) =>
+                    sum + Number(item.dataset.price),
+                0
+            );
+
+
+        const foodPrice =
+            quantities.pizza * 150 +
+            quantities.burger * 120 +
+            quantities.drink * 80;
+
+
+        const gamePrice =
+            [...document.querySelectorAll(".game:checked")]
+            .reduce(
+                (sum, item) =>
+                    sum + Number(item.dataset.price),
+                0
+            );
+
+
+        const total =
+            passPrice +
+            artistPrice +
+            foodPrice +
+            gamePrice;
+
+
+        /* UNIQUE ID */
+
+        const ticketId =
+            "FEST-2026-" +
+            Math.random()
+                .toString(36)
+                .substring(2, 8)
+                .toUpperCase();
+
+
+        /* SAVE */
+
+        const ticket = {
+
+            name: name,
+            roll: roll,
+            image: image,
+
+            artists: artists,
+            food: food,
+            games: games,
+
+            pass: pass.value,
+
+            total: total,
+
+            ticketId: ticketId
+
+        };
+
+
+        localStorage.setItem(
+            "fest2026Ticket",
+            JSON.stringify(ticket)
+        );
+
+
+        /* UPDATE PASS */
+
+        displayTicket(ticket);
+
+
+        success.style.display = "block";
+
+
+        document
+            .getElementById("passes")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /* =========================
+       DISPLAY TICKET
+    ========================= */
+
+    function displayTicket(ticket) {
+
+        const passContent =
+            document.getElementById("passContent");
+
+
+        let imageHTML = "";
+
+        if (ticket.image) {
+
+            imageHTML = `
+                <img
+                    src="${escapeHTML(ticket.image)}"
+                    class="generated-photo"
+                    alt="Ticket photo"
+                    onerror="this.style.display='none'"
+                >
+            `;
+
+        }
+
+
+        passContent.innerHTML = `
+
+            ${imageHTML}
+
+            <h1>STUDENT PASS</h1>
+
+            <p>
+                <b>Name:</b>
+                ${escapeHTML(ticket.name)}
+            </p>
+
+            <p>
+                <b>Roll Number:</b>
+                ${escapeHTML(ticket.roll)}
+            </p>
+
+            <p>
+                <b>Artists:</b>
+                ${ticket.artists.length
+                    ? ticket.artists.map(escapeHTML).join(", ")
+                    : "None"}
+            </p>
+
+            <p>
+                <b>Food:</b>
+                ${ticket.food.length
+                    ? ticket.food.map(escapeHTML).join(", ")
+                    : "None"}
+            </p>
+
+            <p>
+                <b>Activities:</b>
+                ${ticket.games.length
+                    ? ticket.games.map(escapeHTML).join(", ")
+                    : "None"}
+            </p>
+
+            <p>
+                <b>Pass:</b>
+                ${escapeHTML(ticket.pass)}
+            </p>
+
+            <p>
+                <b>Ticket ID:</b>
+                ${escapeHTML(ticket.ticketId)}
+            </p>
+
+            <p>
+                <b>Total:</b>
+                ₹${ticket.total}
+            </p>
+
+            <p>
+                Music • Food • Games • Fun
+            </p>
+
+        `;
+
+
+        document.getElementById("heroTicketId").textContent =
+            "Ticket ID: " + ticket.ticketId;
+
+    }
+
+
+    /* =========================
+       BASIC HTML SAFETY
+    ========================= */
+
+    function escapeHTML(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================
+       LOAD SAVED TICKET
+    ========================= */
+
+    window.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            updateSelectedBoxes();
+            updateReview();
+
+
+            const saved =
+                localStorage.getItem(
+                    "fest2026Ticket"
+                );
+
+
+            if (saved) {
+
+                try {
+
+                    const ticket =
+                        JSON.parse(saved);
+
+                    displayTicket(ticket);
+
+                } catch (error) {
+
+                    localStorage.removeItem(
+                        "fest2026Ticket"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =========================
+       LIVE NAME / ROLL UPDATE
+    ========================= */
+
+    document
+        .getElementById("fullName")
+        .addEventListener(
+            "input",
+            updateReview
+        );
+
+
+    document
+        .getElementById("rollNumber")
+        .addEventListener(
+            "input",
+            updateReview
+        );
+
+</script>
+```
+
+</body>
+
+</html>
